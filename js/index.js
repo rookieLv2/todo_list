@@ -9,28 +9,44 @@ const database = firebase.database()
     
 // 第一次載入資料庫時顯示所有內容
 let data = []
-database.ref("/demodata/").once('value',e=>{ 
-  for (var i in e.val()) {  // e.val()是firebase所有的資料
-    console.log(e.val()[i]) // 用字串i抓單筆資料
-    data.push({ "id": i , "content": e.val()[i].content })   
-    add_todo(e.val()[i].content)
-  }
-})
-
-// database.ref("/demodata/").limitToLast(1).on('value',e => {
-//   console.log(data)
-//   for (var i in e.val()) {  // e.val()是firebase所有的資料
-//     // for(var j=0; j<data.length; j++){
-//     //   if(i == data[j].id){
-//     //     console.log(data[j].id)
-//     //     continue
-//     //   }
+database.ref("/demodata/").once('value').then(
+  function(e){ 
+    for (var i in e.val()) {  // e.val()是firebase所有的資料
+      // console.log(e.val()[i]) // 用字串i抓單筆資料
+      data.push({ "id": i , "content": e.val()[i].content })   
+      add_todo(e.val()[i].content)
+    }
+    database.ref("/demodata/").on('value',e => {
+      // console.log(data)
+      for (var i in e.val()) {  // e.val()是firebase所有的資料
+        // let exist = false
+        // for(var j=0; j<data.length; j++){
+        //   // console.log(i)
+        //   if(i == data[j].id){
+        //     // console.log(data[j].id)
+        //     exist=true
+        //   }
+            
+        // }
+        // if(!exist){
+        //   add_todo(e.val()[i].content)
+        //   data.push({ "id": i , "content": e.val()[i].content })  
+        // }  
         
-//     // }
-//     // add_todo(e.val()[i].content)
-//   }
+      }
+      let temp = document.querySelectorAll(".data")
+      
+      for(var i=0; i<temp.length; i++){
+        temp[i].remove()
+    }    
+   })
 
-// })
+
+  }
+)
+
+
+
 
 // 以下開工
 // 抓到網頁元素
