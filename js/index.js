@@ -43,7 +43,9 @@ const del_button = document.querySelectorAll(".del_btn")  //刪除 document.quer
 // 加入click事件
 add_button.addEventListener('click', function (event) {
   add_todo(new_todo_value.value)
+  database.ref("/demodata/").push({content : new_todo_value.value}) //將資料新增到firebase
 })
+
 
 
 function add_todo(str){ //按下add_todo後，將元素建好並將結點串接起來，包括 text.gb_icon.textContent
