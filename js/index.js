@@ -4,32 +4,32 @@ firebase.initializeApp({
   databaseURL: "https://attempt-start-baa2f-default-rtdb.firebaseio.com/"
 });
 
+// 接上firebase
 const database = firebase.database()
     
+// 第一次載入資料庫時顯示所有內容
 let data = []
-database.ref("/demodata/").once('value',e=>{
-  for (var i in e.val()) {
-    console.log(e.val()[i])
-    data.push(e.val()[i])
+database.ref("/demodata/").once('value',e=>{ 
+  for (var i in e.val()) {  // e.val()是firebase所有的資料
+    console.log(e.val()[i]) // 用字串i抓單筆資料
+    data.push({ "id": i , "content": e.val()[i].content })   
+    add_todo(e.val()[i].content)
   }
 })
 
-// var words = [];
+// database.ref("/demodata/").limitToLast(1).on('value',e => {
+//   console.log(data)
+//   for (var i in e.val()) {  // e.val()是firebase所有的資料
+//     // for(var j=0; j<data.length; j++){
+//     //   if(i == data[j].id){
+//     //     console.log(data[j].id)
+//     //     continue
+//     //   }
+        
+//     // }
+//     // add_todo(e.val()[i].content)
+//   }
 
-// // 接上firebase
-// var firebase;
-// var config = {
-//   databaseURL: "https://attempt-start-baa2f-default-rtdb.firebaseio.com/"
-// };
-// firebase.initializeApp(config);
-// var database = firebase.database().ref("/demodata/");
-
-// //第一次載入資料庫時顯示所有內容
-// database.once('value', function (snapshot) {
-//   for (var i in snapshot.val()) {
-//     console.log(snapshot.val()[i])
-//     words.push(snapshot.val()[i])
-//   } 
 // })
 
 // 以下開工
@@ -46,7 +46,7 @@ add_button.addEventListener('click', function (event) {
 
 
 function add_todo(str){ //按下add_todo後，將元素建好並將結點串接起來，包括 text.gb_icon.textContent
-  console.log(str)
+  // console.log(str)
   
   const new_data = document.createElement('div')  // 用 createElement 增加一個 DOM 節點
   const text = document.createElement('h4')
@@ -74,7 +74,7 @@ for(var i=0; i<data.length; i++){
 }
 
 function del(event){
-    console.log(event.target.parentNode)
+    // console.log(event.target.parentNode)
     event.target.parentNode.remove()
 }
 
