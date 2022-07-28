@@ -1,0 +1,66 @@
+body{ 
+    background-color: rgb(148, 207, 202);
+}
+
+h1{
+    margin-top: 10%;
+    text-align: center;
+}
+
+
+.total_datas{
+    text-align: center;
+}
+
+.data{
+    display: flex;
+    justify-content: center;
+}
+
+h4{
+    background-color: rgb(236, 228, 155);
+    width: 20%;
+    text-align: left;
+    padding: 15px;
+    margin-bottom: 5px;
+    border-radius: 15px 0px 0px 15px;  
+    overflow: hidden
+}
+
+.icon{
+/*      vertical-align: bottom; */
+     width: auto;
+/*      margin-right: 0; */
+/*      text-align: auto; */
+     border-radius: 0px 15px 15px 0px;
+   
+}
+
+h3{
+    margin-top: 5%;
+    text-align: center;
+}
+   
+.new_todo{
+    display: flex;
+    justify-content: center;
+}
+
+.new_todo_value{
+/*  text-align: left; */
+    width:20%;
+    margin-top: 1.5rem;
+    margin-bottom: 5px;
+    padding: 15px;
+    background-color: rgb(212, 226, 130);
+    border-radius: 15px 0px 0px 15px;
+    border: 0px solid #000;
+    color: rgb(47, 94, 94);
+}
+.add_todo{
+    margin-top: 1.5rem;
+    margin-bottom: 5px;
+}
+.icon{
+  cursor: pointer;
+}
