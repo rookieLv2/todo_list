@@ -6,7 +6,6 @@ firebase.initializeApp({
 
 // 接上firebase
 const database = firebase.database()
-    
 // 第一次載入資料庫時顯示所有內容
 // let data = []
 database.ref("/demodata/").once('value').then(
@@ -31,7 +30,6 @@ database.ref("/demodata/").once('value').then(
 
   }
 )
-
 
 // 以下開工
 // 抓到網頁元素
@@ -72,10 +70,17 @@ function add_todo(str){ //按下add_todo後，將元素建好並將結點串接�
   })    
 }
 
-
 function del(event){
-    // console.log(event.target.parentNode)
-    event.target.parentNode.remove()
+  database.ref("/demodata/").once('value').then(
+    function(e){ 
+      for (var i in e.val()) {  // e.val()是firebase所有的資料
+        if(e.val()[i].content == event.target.parentNode.children[0].innerText){
+          // demodata路徑 /demodata/-N845ReRXYA9ZdZ-IgC5 == i                       
+          let del_data = database.ref("/demodata/" + i)
+          del_data.remove()
+        }
+      }
+    })    
 }
 
  
