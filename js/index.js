@@ -37,6 +37,39 @@ const add_button = document.querySelector(".add_todo")
 const new_todo_value = document.querySelector(".new_todo_value")
 const total_datas = document.querySelector(".total_datas")
 const del_button = document.querySelectorAll(".del_btn")  //刪除 document.querySelectorAll選取全部  querySelectorAll是array
+let data = [
+  {content: 'test'},
+  {content: '123'}, 
+  {content: 'abc'}
+]
+
+// source: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array#answer-2450976
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
+shuffle(data)
+
+data.forEach(element => {
+  add_todo(element.content)
+});
+
+
+
 
 // 加入click事件
 add_button.addEventListener('click', function (event) {
